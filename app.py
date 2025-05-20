@@ -7,6 +7,11 @@ app = Flask(__name__, static_folder="static")
 CORS(app)
 
 # Load model
+import nltk
+
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 model = joblib.load("spam_classifier.pkl")
 
 @app.route("/")
