@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_from_directory
 import joblib
 import pandas as pd
+import os
 from flask_cors import CORS
 
 app = Flask(__name__, static_folder="static")
