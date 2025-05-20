@@ -12,6 +12,8 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
+from nltk.corpus import stopwords
+nltk.download('stopwords')
 s=set(stopwords.words("english"))
 le=WordNetLemmatizer()
 
