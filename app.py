@@ -12,7 +12,6 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
-model = joblib.load("spam_classifier.pkl")
 
 le=WordNetLemmatizer()
 def preprocess(x):
@@ -25,6 +24,8 @@ def preprocess(x):
     sw=[i for i in p if i not in s ]
     t_l=[le.lemmatize(i) for i in sw]
     return ' '.join(t_l)
+
+model = joblib.load("spam_classifier.pkl")
 
 @app.route("/")
 def index():
