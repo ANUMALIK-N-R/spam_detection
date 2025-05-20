@@ -34,7 +34,7 @@ async function classifyCSV() {
     formData.append("file", file);
 
     try {
-        let response = await fetch("http://127.0.0.1:5000/predict-csv", {  // Local Flask API URL
+        let response = await fetch("/predict", {  // Local Flask API URL
             method: "POST",
             body: formData
         });
