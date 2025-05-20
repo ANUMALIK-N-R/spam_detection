@@ -14,6 +14,18 @@ nltk.download('punkt')
 nltk.download('wordnet')
 model = joblib.load("spam_classifier.pkl")
 
+le=WordNetLemmatizer()
+def preprocess(x):
+    from nltk.corpus import stopwords
+    from nltk.stem import WordNetLemmatizer
+    from nltk import word_tokenize
+    l=x.lower()
+    t=nltk.word_tokenize(l)
+    p=[i for i in t if i not in string.punctuation]
+    sw=[i for i in p if i not in s ]
+    t_l=[le.lemmatize(i) for i in sw]
+    return ' '.join(t_l)
+
 @app.route("/")
 def index():
     return send_from_directory("static", "index.html")
