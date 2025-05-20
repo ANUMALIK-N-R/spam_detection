@@ -32,7 +32,7 @@ model = joblib.load("spam_classifier.pkl")
 
 @app.route("/")
 def index():
-    return send_from_directory("static", "index.html")
+    return send_from_directory("static", "spamfront.html")
 
 @app.route("/<path:path>")
 def serve_static(path):
