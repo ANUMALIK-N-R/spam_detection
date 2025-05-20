@@ -13,14 +13,13 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk import word_tokenize
 nltk.download('stopwords')
 s=set(stopwords.words("english"))
 le=WordNetLemmatizer()
 
 def preprocess(x):
-    from nltk.corpus import stopwords
-    from nltk.stem import WordNetLemmatizer
-    from nltk import word_tokenize
     l=x.lower()
     t=nltk.word_tokenize(l)
     p=[i for i in t if i not in string.punctuation]
