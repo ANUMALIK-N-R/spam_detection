@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Classifier</title>
+    <link rel="stylesheet" href="csspam.css">
+</head>
+<body>
+    <h1>Spam Classification</h1>
+    <textarea id="inputText" placeholder="Enter message(s)"></textarea>
+    <button onclick="classifyText()">Classify</button>
+    <input type="file" id="csvInput" accept=".csv">
+    <button onclick="classifyCSV()">Classify CSV</button>
+    <script src="js_spam.js"></script>
+    <p id="result"></p>
+
+    <script>
+        async function classifyText() {
+            let text = document.getElementById("inputText").value;
+            let response = await fetch("https://your-flask-api-url/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text })
+            });
+            let result = await response.json();
+            document.getElementById("result").innerText = "Prediction: " + result.prediction;
+        }
+
+        async function classifyCSV() {
+            let file = document.getElementById("csvInput").files[0];
+            let formData = new FormData();
+            formData.append("file", file);
+
+            let response = await fetch("https://your-flask-api-url/predict-csv", {
+                method: "POST",
+                body: formData
+            });
+            let result = await response.json();
+            document.getElementById("result").innerText = "CSV processed. Check console for results.";
+            console.log(result);
+        }
+    </script>
+</body>
+</html>
