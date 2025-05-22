@@ -48,6 +48,7 @@ def predict_text():
         return jsonify({"error": "Empty input"}), 400
 
     # Use model pipeline to predict probability
+    text = preprocess(text)
     prob = model.predict_proba([text])[0]
     pred_class = model.predict([text])[0]
 
